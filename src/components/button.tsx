@@ -1,10 +1,17 @@
 import { type FC } from "react";
-import { StyleSheet, View, Pressable, Text } from "react-native";
+import {
+  type GestureResponderEvent,
+  StyleSheet,
+  View,
+  Pressable,
+  Text,
+} from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 type ButtonProps = {
   label: string;
   theme?: "primary" | undefined;
+  onPress?: null | ((event: GestureResponderEvent) => void) | undefined;
 };
 
 export const Button: FC<ButtonProps> = (props) => {
@@ -18,7 +25,7 @@ export const Button: FC<ButtonProps> = (props) => {
       >
         <Pressable
           style={[styles.button, { backgroundColor: "#fff" }]}
-          onPress={() => alert("ボタンが押されました")}
+          onPress={props.onPress}
         >
           <FontAwesome
             name="picture-o"
